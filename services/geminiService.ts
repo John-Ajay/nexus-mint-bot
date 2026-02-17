@@ -1,8 +1,7 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { ContractAnalysis } from "../types";
 
-// The API key is injected via Vite's define config
+// The API key is injected via Vite's define config or environment
 const apiKey = process.env.API_KEY || '';
 
 export const analyzeContract = async (contractData: string, network: string): Promise<ContractAnalysis> => {
@@ -26,7 +25,12 @@ export const analyzeContract = async (contractData: string, network: string): Pr
     }
   });
 
-  return JSON.parse(response.text) as ContractAnalysis;
+  const text = response.text;
+  if (!text) {
+    throw new Error("Failed to receive analysis from Gemini.");
+  }
+
+  return JSON.parse(text) as ContractAnalysis;
 };
 
 export const getMintingAdvice = async (prompt: string): Promise<string> => {

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Wallet, Network, MintLog } from './types';
-import WalletManager from './components/WalletManager';
+import Walletmanager from './components/Walletmanager';
 import MintControl from './components/MintControl';
 import ActivityLog from './components/ActivityLog';
 import { Globe, ShieldCheck, Sparkles, Cpu, Activity, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
